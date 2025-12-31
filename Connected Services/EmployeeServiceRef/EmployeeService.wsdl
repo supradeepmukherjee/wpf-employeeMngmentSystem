@@ -25,6 +25,12 @@
   <wsdl:message name="IEmployeeService_CreateDepartment_OutputMessage">
     <wsdl:part name="parameters" element="tns:CreateDepartmentResponse" />
   </wsdl:message>
+  <wsdl:message name="IEmployeeService_UpdateDepartment_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDepartment" />
+  </wsdl:message>
+  <wsdl:message name="IEmployeeService_UpdateDepartment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDepartmentResponse" />
+  </wsdl:message>
   <wsdl:message name="IEmployeeService_DeleteDepartment_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteDepartment" />
   </wsdl:message>
@@ -36,6 +42,12 @@
   </wsdl:message>
   <wsdl:message name="IEmployeeService_GetAllEmployees_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllEmployeesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEmployeeService_GetEmployeesByDepartmentId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeesByDepartmentId" />
+  </wsdl:message>
+  <wsdl:message name="IEmployeeService_GetEmployeesByDepartmentId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeesByDepartmentIdResponse" />
   </wsdl:message>
   <wsdl:message name="IEmployeeService_GetEmployeeById_InputMessage">
     <wsdl:part name="parameters" element="tns:GetEmployeeById" />
@@ -79,11 +91,29 @@
   <wsdl:message name="IEmployeeService_GetAllProjects_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllProjectsResponse" />
   </wsdl:message>
+  <wsdl:message name="IEmployeeService_GetProjectById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProjectById" />
+  </wsdl:message>
+  <wsdl:message name="IEmployeeService_GetProjectById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProjectByIdResponse" />
+  </wsdl:message>
   <wsdl:message name="IEmployeeService_CreateProject_InputMessage">
     <wsdl:part name="parameters" element="tns:CreateProject" />
   </wsdl:message>
   <wsdl:message name="IEmployeeService_CreateProject_OutputMessage">
     <wsdl:part name="parameters" element="tns:CreateProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEmployeeService_UpdateProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateProject" />
+  </wsdl:message>
+  <wsdl:message name="IEmployeeService_UpdateProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEmployeeService_DeleteProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProject" />
+  </wsdl:message>
+  <wsdl:message name="IEmployeeService_DeleteProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProjectResponse" />
   </wsdl:message>
   <wsdl:message name="IEmployeeService_AssignEmployeeToProject_InputMessage">
     <wsdl:part name="parameters" element="tns:AssignEmployeeToProject" />
@@ -109,6 +139,12 @@
   <wsdl:message name="IEmployeeService_GetProjectWithEmployees_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetProjectWithEmployeesResponse" />
   </wsdl:message>
+  <wsdl:message name="IEmployeeService_GetProjectsForEmployee_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProjectsForEmployee" />
+  </wsdl:message>
+  <wsdl:message name="IEmployeeService_GetProjectsForEmployee_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProjectsForEmployeeResponse" />
+  </wsdl:message>
   <wsdl:portType name="IEmployeeService">
     <wsdl:operation name="GetAllDepartments">
       <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/GetAllDepartments" message="tns:IEmployeeService_GetAllDepartments_InputMessage" />
@@ -122,6 +158,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/CreateDepartment" message="tns:IEmployeeService_CreateDepartment_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeService/CreateDepartmentResponse" message="tns:IEmployeeService_CreateDepartment_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="UpdateDepartment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/UpdateDepartment" message="tns:IEmployeeService_UpdateDepartment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeService/UpdateDepartmentResponse" message="tns:IEmployeeService_UpdateDepartment_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="DeleteDepartment">
       <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/DeleteDepartment" message="tns:IEmployeeService_DeleteDepartment_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeService/DeleteDepartmentResponse" message="tns:IEmployeeService_DeleteDepartment_OutputMessage" />
@@ -129,6 +169,10 @@
     <wsdl:operation name="GetAllEmployees">
       <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/GetAllEmployees" message="tns:IEmployeeService_GetAllEmployees_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeService/GetAllEmployeesResponse" message="tns:IEmployeeService_GetAllEmployees_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeesByDepartmentId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/GetEmployeesByDepartmentId" message="tns:IEmployeeService_GetEmployeesByDepartmentId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeService/GetEmployeesByDepartmentIdResponse" message="tns:IEmployeeService_GetEmployeesByDepartmentId_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetEmployeeById">
       <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/GetEmployeeById" message="tns:IEmployeeService_GetEmployeeById_InputMessage" />
@@ -158,9 +202,21 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/GetAllProjects" message="tns:IEmployeeService_GetAllProjects_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeService/GetAllProjectsResponse" message="tns:IEmployeeService_GetAllProjects_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetProjectById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/GetProjectById" message="tns:IEmployeeService_GetProjectById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeService/GetProjectByIdResponse" message="tns:IEmployeeService_GetProjectById_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="CreateProject">
       <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/CreateProject" message="tns:IEmployeeService_CreateProject_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeService/CreateProjectResponse" message="tns:IEmployeeService_CreateProject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/UpdateProject" message="tns:IEmployeeService_UpdateProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeService/UpdateProjectResponse" message="tns:IEmployeeService_UpdateProject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/DeleteProject" message="tns:IEmployeeService_DeleteProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeService/DeleteProjectResponse" message="tns:IEmployeeService_DeleteProject_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AssignEmployeeToProject">
       <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/AssignEmployeeToProject" message="tns:IEmployeeService_AssignEmployeeToProject_InputMessage" />
@@ -177,6 +233,10 @@
     <wsdl:operation name="GetProjectWithEmployees">
       <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/GetProjectWithEmployees" message="tns:IEmployeeService_GetProjectWithEmployees_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeService/GetProjectWithEmployeesResponse" message="tns:IEmployeeService_GetProjectWithEmployees_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectsForEmployee">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/GetProjectsForEmployee" message="tns:IEmployeeService_GetProjectsForEmployee_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeService/GetProjectsForEmployeeResponse" message="tns:IEmployeeService_GetProjectsForEmployee_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IEmployeeService" type="tns:IEmployeeService">
@@ -208,6 +268,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="UpdateDepartment">
+      <soap:operation soapAction="http://tempuri.org/IEmployeeService/UpdateDepartment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="DeleteDepartment">
       <soap:operation soapAction="http://tempuri.org/IEmployeeService/DeleteDepartment" style="document" />
       <wsdl:input>
@@ -219,6 +288,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllEmployees">
       <soap:operation soapAction="http://tempuri.org/IEmployeeService/GetAllEmployees" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeesByDepartmentId">
+      <soap:operation soapAction="http://tempuri.org/IEmployeeService/GetEmployeesByDepartmentId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -289,8 +367,35 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetProjectById">
+      <soap:operation soapAction="http://tempuri.org/IEmployeeService/GetProjectById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="CreateProject">
       <soap:operation soapAction="http://tempuri.org/IEmployeeService/CreateProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProject">
+      <soap:operation soapAction="http://tempuri.org/IEmployeeService/UpdateProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProject">
+      <soap:operation soapAction="http://tempuri.org/IEmployeeService/DeleteProject" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -327,6 +432,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetProjectWithEmployees">
       <soap:operation soapAction="http://tempuri.org/IEmployeeService/GetProjectWithEmployees" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectsForEmployee">
+      <soap:operation soapAction="http://tempuri.org/IEmployeeService/GetProjectsForEmployee" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

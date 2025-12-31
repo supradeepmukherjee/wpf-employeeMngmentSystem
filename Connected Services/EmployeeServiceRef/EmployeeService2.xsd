@@ -41,6 +41,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="UpdateDepartment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="dto" nillable="true" type="q5:DepartmentDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDepartmentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="UpdateDepartmentResult" nillable="true" type="q6:DepartmentDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="DeleteDepartment">
     <xs:complexType>
       <xs:sequence>
@@ -63,7 +77,21 @@
   <xs:element name="GetAllEmployeesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="GetAllEmployeesResult" nillable="true" type="q5:ArrayOfEmployeeDto" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="GetAllEmployeesResult" nillable="true" type="q7:ArrayOfEmployeeDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEmployeesByDepartmentId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="departmentId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEmployeesByDepartmentIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="GetEmployeesByDepartmentIdResult" nillable="true" type="q8:ArrayOfEmployeeDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -77,35 +105,35 @@
   <xs:element name="GetEmployeeByIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="GetEmployeeByIdResult" nillable="true" type="q6:EmployeeDto" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="GetEmployeeByIdResult" nillable="true" type="q9:EmployeeDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="CreateEmployee">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="dto" nillable="true" type="q7:EmployeeDto" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="dto" nillable="true" type="q10:EmployeeDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="CreateEmployeeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="CreateEmployeeResult" nillable="true" type="q8:EmployeeDto" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="CreateEmployeeResult" nillable="true" type="q11:EmployeeDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateEmployee">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="dto" nillable="true" type="q9:EmployeeDto" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="dto" nillable="true" type="q12:EmployeeDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateEmployeeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="UpdateEmployeeResult" nillable="true" type="q10:EmployeeDto" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="UpdateEmployeeResult" nillable="true" type="q13:EmployeeDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -133,21 +161,21 @@
   <xs:element name="GetEmployeeDetailResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="GetEmployeeDetailResult" nillable="true" type="q11:EmployeeDetailDto" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="GetEmployeeDetailResult" nillable="true" type="q14:EmployeeDetailDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="CreateOrUpdateEmployeeDetail">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="dto" nillable="true" type="q12:EmployeeDetailDto" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="dto" nillable="true" type="q15:EmployeeDetailDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="CreateOrUpdateEmployeeDetailResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="CreateOrUpdateEmployeeDetailResult" nillable="true" type="q13:EmployeeDetailDto" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="CreateOrUpdateEmployeeDetailResult" nillable="true" type="q16:EmployeeDetailDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -159,21 +187,63 @@
   <xs:element name="GetAllProjectsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="GetAllProjectsResult" nillable="true" type="q14:ArrayOfProjectDto" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="GetAllProjectsResult" nillable="true" type="q17:ArrayOfProjectDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProjectById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProjectByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="GetProjectByIdResult" nillable="true" type="q18:ProjectDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="CreateProject">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="dto" nillable="true" type="q15:ProjectDto" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="dto" nillable="true" type="q19:ProjectDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="CreateProjectResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="CreateProjectResult" nillable="true" type="q16:ProjectDto" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="CreateProjectResult" nillable="true" type="q20:ProjectDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateProject">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="dto" nillable="true" type="q21:ProjectDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateProjectResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="UpdateProjectResult" nillable="true" type="q22:ProjectDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteProject">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteProjectResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteProjectResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -217,7 +287,7 @@
   <xs:element name="GetDepartmentWithEmployeesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="GetDepartmentWithEmployeesResult" nillable="true" type="q17:DepartmentDto" />
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="GetDepartmentWithEmployeesResult" nillable="true" type="q23:DepartmentDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -231,7 +301,21 @@
   <xs:element name="GetProjectWithEmployeesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="GetProjectWithEmployeesResult" nillable="true" type="q18:ProjectDto" />
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="GetProjectWithEmployeesResult" nillable="true" type="q24:ProjectDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProjectsForEmployee">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="employeeId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProjectsForEmployeeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/Learn.DTO" minOccurs="0" name="GetProjectsForEmployeeResult" nillable="true" type="q25:ArrayOfProjectDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

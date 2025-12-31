@@ -455,6 +455,12 @@ namespace EmployeeWpfClient.EmployeeServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/CreateDepartment", ReplyAction="http://tempuri.org/IEmployeeService/CreateDepartmentResponse")]
         System.Threading.Tasks.Task<EmployeeWpfClient.EmployeeServiceRef.DepartmentDto> CreateDepartmentAsync(EmployeeWpfClient.EmployeeServiceRef.DepartmentDto dto);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/UpdateDepartment", ReplyAction="http://tempuri.org/IEmployeeService/UpdateDepartmentResponse")]
+        EmployeeWpfClient.EmployeeServiceRef.DepartmentDto UpdateDepartment(EmployeeWpfClient.EmployeeServiceRef.DepartmentDto dto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/UpdateDepartment", ReplyAction="http://tempuri.org/IEmployeeService/UpdateDepartmentResponse")]
+        System.Threading.Tasks.Task<EmployeeWpfClient.EmployeeServiceRef.DepartmentDto> UpdateDepartmentAsync(EmployeeWpfClient.EmployeeServiceRef.DepartmentDto dto);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/DeleteDepartment", ReplyAction="http://tempuri.org/IEmployeeService/DeleteDepartmentResponse")]
         bool DeleteDepartment(int id);
         
@@ -466,6 +472,12 @@ namespace EmployeeWpfClient.EmployeeServiceRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetAllEmployees", ReplyAction="http://tempuri.org/IEmployeeService/GetAllEmployeesResponse")]
         System.Threading.Tasks.Task<EmployeeWpfClient.EmployeeServiceRef.EmployeeDto[]> GetAllEmployeesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetEmployeesByDepartmentId", ReplyAction="http://tempuri.org/IEmployeeService/GetEmployeesByDepartmentIdResponse")]
+        EmployeeWpfClient.EmployeeServiceRef.EmployeeDto[] GetEmployeesByDepartmentId(int departmentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetEmployeesByDepartmentId", ReplyAction="http://tempuri.org/IEmployeeService/GetEmployeesByDepartmentIdResponse")]
+        System.Threading.Tasks.Task<EmployeeWpfClient.EmployeeServiceRef.EmployeeDto[]> GetEmployeesByDepartmentIdAsync(int departmentId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetEmployeeById", ReplyAction="http://tempuri.org/IEmployeeService/GetEmployeeByIdResponse")]
         EmployeeWpfClient.EmployeeServiceRef.EmployeeDto GetEmployeeById(int id);
@@ -509,11 +521,29 @@ namespace EmployeeWpfClient.EmployeeServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetAllProjects", ReplyAction="http://tempuri.org/IEmployeeService/GetAllProjectsResponse")]
         System.Threading.Tasks.Task<EmployeeWpfClient.EmployeeServiceRef.ProjectDto[]> GetAllProjectsAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetProjectById", ReplyAction="http://tempuri.org/IEmployeeService/GetProjectByIdResponse")]
+        EmployeeWpfClient.EmployeeServiceRef.ProjectDto GetProjectById(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetProjectById", ReplyAction="http://tempuri.org/IEmployeeService/GetProjectByIdResponse")]
+        System.Threading.Tasks.Task<EmployeeWpfClient.EmployeeServiceRef.ProjectDto> GetProjectByIdAsync(int id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/CreateProject", ReplyAction="http://tempuri.org/IEmployeeService/CreateProjectResponse")]
         EmployeeWpfClient.EmployeeServiceRef.ProjectDto CreateProject(EmployeeWpfClient.EmployeeServiceRef.ProjectDto dto);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/CreateProject", ReplyAction="http://tempuri.org/IEmployeeService/CreateProjectResponse")]
         System.Threading.Tasks.Task<EmployeeWpfClient.EmployeeServiceRef.ProjectDto> CreateProjectAsync(EmployeeWpfClient.EmployeeServiceRef.ProjectDto dto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/UpdateProject", ReplyAction="http://tempuri.org/IEmployeeService/UpdateProjectResponse")]
+        EmployeeWpfClient.EmployeeServiceRef.ProjectDto UpdateProject(EmployeeWpfClient.EmployeeServiceRef.ProjectDto dto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/UpdateProject", ReplyAction="http://tempuri.org/IEmployeeService/UpdateProjectResponse")]
+        System.Threading.Tasks.Task<EmployeeWpfClient.EmployeeServiceRef.ProjectDto> UpdateProjectAsync(EmployeeWpfClient.EmployeeServiceRef.ProjectDto dto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/DeleteProject", ReplyAction="http://tempuri.org/IEmployeeService/DeleteProjectResponse")]
+        bool DeleteProject(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/DeleteProject", ReplyAction="http://tempuri.org/IEmployeeService/DeleteProjectResponse")]
+        System.Threading.Tasks.Task<bool> DeleteProjectAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/AssignEmployeeToProject", ReplyAction="http://tempuri.org/IEmployeeService/AssignEmployeeToProjectResponse")]
         bool AssignEmployeeToProject(int employeeId, int projectId);
@@ -538,6 +568,12 @@ namespace EmployeeWpfClient.EmployeeServiceRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetProjectWithEmployees", ReplyAction="http://tempuri.org/IEmployeeService/GetProjectWithEmployeesResponse")]
         System.Threading.Tasks.Task<EmployeeWpfClient.EmployeeServiceRef.ProjectDto> GetProjectWithEmployeesAsync(int projectId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetProjectsForEmployee", ReplyAction="http://tempuri.org/IEmployeeService/GetProjectsForEmployeeResponse")]
+        EmployeeWpfClient.EmployeeServiceRef.ProjectDto[] GetProjectsForEmployee(int employeeId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetProjectsForEmployee", ReplyAction="http://tempuri.org/IEmployeeService/GetProjectsForEmployeeResponse")]
+        System.Threading.Tasks.Task<EmployeeWpfClient.EmployeeServiceRef.ProjectDto[]> GetProjectsForEmployeeAsync(int employeeId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -591,6 +627,14 @@ namespace EmployeeWpfClient.EmployeeServiceRef {
             return base.Channel.CreateDepartmentAsync(dto);
         }
         
+        public EmployeeWpfClient.EmployeeServiceRef.DepartmentDto UpdateDepartment(EmployeeWpfClient.EmployeeServiceRef.DepartmentDto dto) {
+            return base.Channel.UpdateDepartment(dto);
+        }
+        
+        public System.Threading.Tasks.Task<EmployeeWpfClient.EmployeeServiceRef.DepartmentDto> UpdateDepartmentAsync(EmployeeWpfClient.EmployeeServiceRef.DepartmentDto dto) {
+            return base.Channel.UpdateDepartmentAsync(dto);
+        }
+        
         public bool DeleteDepartment(int id) {
             return base.Channel.DeleteDepartment(id);
         }
@@ -605,6 +649,14 @@ namespace EmployeeWpfClient.EmployeeServiceRef {
         
         public System.Threading.Tasks.Task<EmployeeWpfClient.EmployeeServiceRef.EmployeeDto[]> GetAllEmployeesAsync() {
             return base.Channel.GetAllEmployeesAsync();
+        }
+        
+        public EmployeeWpfClient.EmployeeServiceRef.EmployeeDto[] GetEmployeesByDepartmentId(int departmentId) {
+            return base.Channel.GetEmployeesByDepartmentId(departmentId);
+        }
+        
+        public System.Threading.Tasks.Task<EmployeeWpfClient.EmployeeServiceRef.EmployeeDto[]> GetEmployeesByDepartmentIdAsync(int departmentId) {
+            return base.Channel.GetEmployeesByDepartmentIdAsync(departmentId);
         }
         
         public EmployeeWpfClient.EmployeeServiceRef.EmployeeDto GetEmployeeById(int id) {
@@ -663,12 +715,36 @@ namespace EmployeeWpfClient.EmployeeServiceRef {
             return base.Channel.GetAllProjectsAsync();
         }
         
+        public EmployeeWpfClient.EmployeeServiceRef.ProjectDto GetProjectById(int id) {
+            return base.Channel.GetProjectById(id);
+        }
+        
+        public System.Threading.Tasks.Task<EmployeeWpfClient.EmployeeServiceRef.ProjectDto> GetProjectByIdAsync(int id) {
+            return base.Channel.GetProjectByIdAsync(id);
+        }
+        
         public EmployeeWpfClient.EmployeeServiceRef.ProjectDto CreateProject(EmployeeWpfClient.EmployeeServiceRef.ProjectDto dto) {
             return base.Channel.CreateProject(dto);
         }
         
         public System.Threading.Tasks.Task<EmployeeWpfClient.EmployeeServiceRef.ProjectDto> CreateProjectAsync(EmployeeWpfClient.EmployeeServiceRef.ProjectDto dto) {
             return base.Channel.CreateProjectAsync(dto);
+        }
+        
+        public EmployeeWpfClient.EmployeeServiceRef.ProjectDto UpdateProject(EmployeeWpfClient.EmployeeServiceRef.ProjectDto dto) {
+            return base.Channel.UpdateProject(dto);
+        }
+        
+        public System.Threading.Tasks.Task<EmployeeWpfClient.EmployeeServiceRef.ProjectDto> UpdateProjectAsync(EmployeeWpfClient.EmployeeServiceRef.ProjectDto dto) {
+            return base.Channel.UpdateProjectAsync(dto);
+        }
+        
+        public bool DeleteProject(int id) {
+            return base.Channel.DeleteProject(id);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteProjectAsync(int id) {
+            return base.Channel.DeleteProjectAsync(id);
         }
         
         public bool AssignEmployeeToProject(int employeeId, int projectId) {
@@ -701,6 +777,14 @@ namespace EmployeeWpfClient.EmployeeServiceRef {
         
         public System.Threading.Tasks.Task<EmployeeWpfClient.EmployeeServiceRef.ProjectDto> GetProjectWithEmployeesAsync(int projectId) {
             return base.Channel.GetProjectWithEmployeesAsync(projectId);
+        }
+        
+        public EmployeeWpfClient.EmployeeServiceRef.ProjectDto[] GetProjectsForEmployee(int employeeId) {
+            return base.Channel.GetProjectsForEmployee(employeeId);
+        }
+        
+        public System.Threading.Tasks.Task<EmployeeWpfClient.EmployeeServiceRef.ProjectDto[]> GetProjectsForEmployeeAsync(int employeeId) {
+            return base.Channel.GetProjectsForEmployeeAsync(employeeId);
         }
     }
 }

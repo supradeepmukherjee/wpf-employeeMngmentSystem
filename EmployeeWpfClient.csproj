@@ -65,8 +65,13 @@
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\DepartmentsTabViewModel.cs" />
+    <Compile Include="ViewModels\EmployeesTabViewModel.cs" />
+    <Compile Include="ViewModels\ExploreTabViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\ProjectsTabViewModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
+    <Compile Include="ViewModels\TabViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -91,6 +96,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <None Include="Connected Services\EmployeeServiceRef\EmployeeService.wsdl" />
     <None Include="Connected Services\EmployeeServiceRef\EmployeeService.xsd">
       <SubType>Designer</SubType>
@@ -113,9 +121,6 @@
     <None Include="Connected Services\EmployeeServiceRef\EmployeeWpfClient.EmployeeServiceRef.ProjectDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

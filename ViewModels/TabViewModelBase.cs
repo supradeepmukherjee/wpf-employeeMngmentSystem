@@ -8,14 +8,19 @@ using System.Threading.Tasks;
 
 namespace EmployeeWpfClient.ViewModels
 {
-    public class ViewModelBase : INotifyPropertyChanged
+    public abstract class TabViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void NotifyPropertyChanged([CallerMemberName] string propertyName=null)
+        public string Header { get; set; }
+        public virtual bool IsClosable => true;
+
+        protected void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public abstract void Load();
 
         protected bool Set<T>(ref T field, T value, [CallerMemberName] string propName = null)
         {
