@@ -62,10 +62,11 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <DataGrid ItemsSource="{Binding Employees}" SelectedItem="{Binding Employee}"
-                          AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="0">
+          AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="0">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Binding="{Binding EmployeeId}" Width="60"/>
                         <DataGridTextColumn Header="First" Binding="{Binding FirstName}" Width="*"/>
@@ -81,6 +82,14 @@
                     <Button Content="Add" Command="{Binding AddCommand}" Margin="4"/>
                     <Button Content="Update" Command="{Binding UpdateCommand}" Margin="4"/>
                     <Button Content="Delete" Command="{Binding DeleteCommand}" Margin="4"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="6">
+                    <Image Width="140" Height="140" Margin="4" Source="{Binding EmployeePhoto}" />
+                    <StackPanel Orientation="Vertical" Margin="6">
+                        <Button Content="Upload Photo" Command="{Binding UploadPhotoCommand}" Margin="4"/>
+                        <TextBlock Text="Selected photo will be uploaded and displayed here." TextWrapping="Wrap" Width="300" />
+                    </StackPanel>
                 </StackPanel>
             </Grid>
         </DataTemplate>

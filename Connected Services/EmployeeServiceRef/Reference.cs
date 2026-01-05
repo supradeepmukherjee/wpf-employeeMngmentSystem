@@ -574,6 +574,18 @@ namespace EmployeeWpfClient.EmployeeServiceRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetProjectsForEmployee", ReplyAction="http://tempuri.org/IEmployeeService/GetProjectsForEmployeeResponse")]
         System.Threading.Tasks.Task<EmployeeWpfClient.EmployeeServiceRef.ProjectDto[]> GetProjectsForEmployeeAsync(int employeeId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/UploadEmployeePhoto", ReplyAction="http://tempuri.org/IEmployeeService/UploadEmployeePhotoResponse")]
+        bool UploadEmployeePhoto(int employeeId, byte[] fileContents, string fileName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/UploadEmployeePhoto", ReplyAction="http://tempuri.org/IEmployeeService/UploadEmployeePhotoResponse")]
+        System.Threading.Tasks.Task<bool> UploadEmployeePhotoAsync(int employeeId, byte[] fileContents, string fileName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetEmployeePhoto", ReplyAction="http://tempuri.org/IEmployeeService/GetEmployeePhotoResponse")]
+        byte[] GetEmployeePhoto(int employeeId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeService/GetEmployeePhoto", ReplyAction="http://tempuri.org/IEmployeeService/GetEmployeePhotoResponse")]
+        System.Threading.Tasks.Task<byte[]> GetEmployeePhotoAsync(int employeeId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -785,6 +797,22 @@ namespace EmployeeWpfClient.EmployeeServiceRef {
         
         public System.Threading.Tasks.Task<EmployeeWpfClient.EmployeeServiceRef.ProjectDto[]> GetProjectsForEmployeeAsync(int employeeId) {
             return base.Channel.GetProjectsForEmployeeAsync(employeeId);
+        }
+        
+        public bool UploadEmployeePhoto(int employeeId, byte[] fileContents, string fileName) {
+            return base.Channel.UploadEmployeePhoto(employeeId, fileContents, fileName);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UploadEmployeePhotoAsync(int employeeId, byte[] fileContents, string fileName) {
+            return base.Channel.UploadEmployeePhotoAsync(employeeId, fileContents, fileName);
+        }
+        
+        public byte[] GetEmployeePhoto(int employeeId) {
+            return base.Channel.GetEmployeePhoto(employeeId);
+        }
+        
+        public System.Threading.Tasks.Task<byte[]> GetEmployeePhotoAsync(int employeeId) {
+            return base.Channel.GetEmployeePhotoAsync(employeeId);
         }
     }
 }

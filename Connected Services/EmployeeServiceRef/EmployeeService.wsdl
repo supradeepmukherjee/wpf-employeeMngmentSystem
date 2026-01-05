@@ -145,6 +145,18 @@
   <wsdl:message name="IEmployeeService_GetProjectsForEmployee_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetProjectsForEmployeeResponse" />
   </wsdl:message>
+  <wsdl:message name="IEmployeeService_UploadEmployeePhoto_InputMessage">
+    <wsdl:part name="parameters" element="tns:UploadEmployeePhoto" />
+  </wsdl:message>
+  <wsdl:message name="IEmployeeService_UploadEmployeePhoto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadEmployeePhotoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEmployeeService_GetEmployeePhoto_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeePhoto" />
+  </wsdl:message>
+  <wsdl:message name="IEmployeeService_GetEmployeePhoto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeePhotoResponse" />
+  </wsdl:message>
   <wsdl:portType name="IEmployeeService">
     <wsdl:operation name="GetAllDepartments">
       <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/GetAllDepartments" message="tns:IEmployeeService_GetAllDepartments_InputMessage" />
@@ -237,6 +249,14 @@
     <wsdl:operation name="GetProjectsForEmployee">
       <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/GetProjectsForEmployee" message="tns:IEmployeeService_GetProjectsForEmployee_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeService/GetProjectsForEmployeeResponse" message="tns:IEmployeeService_GetProjectsForEmployee_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadEmployeePhoto">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/UploadEmployeePhoto" message="tns:IEmployeeService_UploadEmployeePhoto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeService/UploadEmployeePhotoResponse" message="tns:IEmployeeService_UploadEmployeePhoto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeePhoto">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeService/GetEmployeePhoto" message="tns:IEmployeeService_GetEmployeePhoto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeService/GetEmployeePhotoResponse" message="tns:IEmployeeService_GetEmployeePhoto_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IEmployeeService" type="tns:IEmployeeService">
@@ -441,6 +461,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetProjectsForEmployee">
       <soap:operation soapAction="http://tempuri.org/IEmployeeService/GetProjectsForEmployee" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadEmployeePhoto">
+      <soap:operation soapAction="http://tempuri.org/IEmployeeService/UploadEmployeePhoto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmployeePhoto">
+      <soap:operation soapAction="http://tempuri.org/IEmployeeService/GetEmployeePhoto" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
