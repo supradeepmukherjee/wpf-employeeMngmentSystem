@@ -31,7 +31,7 @@ namespace EmployeeWpfClient.ViewModels
 
         public void RaiseCanExecuteChanged()
         {
-            CanExecuteChanged.Invoke(this, EventArgs.Empty);
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using EmployeeWpfClient.EmployeeServiceRef;
+using EmployeeWpfClient.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -33,7 +34,7 @@ namespace EmployeeWpfClient.ViewModels
         public DepartmentsTabViewModel()
         {
             Header = "Departments";
-            AddCommand = new RelayCommand(_ => Add(), _ => !string.IsNullOrWhiteSpace(NewDepartmentName));
+            AddCommand = new RelayCommand(_ => Add(), _ => true);
             UpdateCommand = new RelayCommand(_ => Update(), _ => Department != null);
             DeleteCommand = new RelayCommand(_ => Delete(), _ => Department != null);
         }
@@ -56,13 +57,24 @@ namespace EmployeeWpfClient.ViewModels
         {
             try
             {
-                using (var client = new EmployeeServiceClient())
+                var vm = new CreateDepartmentViewModel();
+                var win = new CreateDeptWindow
                 {
-                    var created = client.CreateDepartment(new DepartmentDto { Name = NewDepartmentName });
-                    Departments.Add(created);
+                    DataContext = vm,
+                    Owner = Application.Current.MainWindow
+                };
+
+                if (win.ShowDialog() == true)
+                {
+                        using (var client = new EmployeeServiceClient())
+                        {
+                            var created = client.CreateDepartment(
+                                new DepartmentDto { Name = vm.DepartmentName });
+
+                            Departments.Add(created);
+                            win.Close();
+                        }
                 }
-                NewDepartmentName = string.Empty;
-                NotifyPropertyChanged(nameof(NewDepartmentName));
             }
             catch (Exception ex) { MessageBox.Show("AddDepartment failed: " + ex.Message); }
         }
@@ -82,15 +94,25 @@ namespace EmployeeWpfClient.ViewModels
 
         private void Delete()
         {
+            if (Department == null) return;
+
+            var msg = $"Are you sure you want to delete department '{Department.Name}'?";
+            var answer = MessageBox.Show(msg, "Confirm delete", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (answer != MessageBoxResult.Yes) return;
+
             try
             {
                 using (var client = new EmployeeServiceClient())
                 {
                     var deleted = client.DeleteDepartment(Department.DepartmentId);
                     if (deleted) Departments.Remove(Department);
+                    else MessageBox.Show("Delete failed.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            catch (Exception ex) { MessageBox.Show("DeleteDepartment failed: " + ex.Message); }
+            catch (Exception ex)
+            {
+                MessageBox.Show("DeleteDepartment failed: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

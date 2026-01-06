@@ -3,153 +3,48 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:EmployeeWpfClient.ViewModels"
         Title="Employee Management System" Height="500" Width="900">
-    <Window.DataContext>
-        <vm:MainViewModel />
-    </Window.DataContext>
+    <Grid Margin="16">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260"/>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-    <Window.Resources>
-        <DataTemplate x:Key="TabHeaderTemplate">
-            <DockPanel LastChildFill="False" Margin="0,0,4,0">
-                <TextBlock Text="{Binding Header}" VerticalAlignment="Center" Margin="6,0" />
+        <Border Grid.Column="0"
+        BorderBrush="#B0B0B0"
+        BorderThickness="1"
+        CornerRadius="4"
+        Padding="8"
+        Margin="0,0,12,0"
+        Background="#F9F9F9">
+            <ContentControl Grid.Column="0" Content="{Binding OpenTabs[0]}"/>
+        </Border>
 
-                <Button Width="20" Height="20" DockPanel.Dock="Right"
-                Margin="4,0,4,0"
-                ToolTip="Close tab"
-                Command="{Binding DataContext.CloseTabCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-                CommandParameter="{Binding}">
-                    <TextBlock Text="X" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="11"/>
-                    <Button.Visibility>
-                        <Binding Path="IsClosable">
-                            <Binding.Converter>
-                                <BooleanToVisibilityConverter/>
-                            </Binding.Converter>
-                        </Binding>
-                    </Button.Visibility>
-                </Button>
-            </DockPanel>
-        </DataTemplate>
+        <Grid Grid.Column="1" Margin="8,0,8,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <DataTemplate DataType="{x:Type vm:ExploreTabViewModel}">
-            <ScrollViewer>
-                <StackPanel Margin="16">
-                    <TextBlock Text="Explore" FontSize="20" FontWeight="Bold" Margin="0,0,0,12"/>
-                    <WrapPanel>
-                        <Button Width="200" Height="90" Margin="8"
-                                Command="{Binding OpenTileCommand}" CommandParameter="Employees">
-                            <StackPanel>
-                                <TextBlock Text="Employees" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Width="200" Height="90" Margin="8"
-                                Command="{Binding OpenTileCommand}" CommandParameter="Departments">
-                            <StackPanel>
-                                <TextBlock Text="Departments" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Width="200" Height="90" Margin="8"
-                                Command="{Binding OpenTileCommand}" CommandParameter="Projects">
-                            <StackPanel>
-                                <TextBlock Text="Projects" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
-                            </StackPanel>
-                        </Button>
-                    </WrapPanel>
-                </StackPanel>
-            </ScrollViewer>
-        </DataTemplate>
+            <ItemsControl Grid.Row="0" ItemsSource="{Binding OpenTabs}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <StaticResource ResourceKey="TabHeaderTemplate"/>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
-        <DataTemplate DataType="{x:Type vm:EmployeesTabViewModel}">
-            <Grid Margin="6">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
-                <DataGrid ItemsSource="{Binding Employees}" SelectedItem="{Binding Employee}"
-          AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="0">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding EmployeeId}" Width="60"/>
-                        <DataGridTextColumn Header="First" Binding="{Binding FirstName}" Width="*"/>
-                        <DataGridTextColumn Header="Last" Binding="{Binding LastName}" Width="*"/>
-                        <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-
-                <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="4">
-                    <TextBox Width="150" Margin="4" Text="{Binding NewFirstName, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBox Width="150" Margin="4" Text="{Binding NewLastName, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBox Width="200" Margin="4" Text="{Binding NewEmail, UpdateSourceTrigger=PropertyChanged}" />
-                    <Button Content="Add" Command="{Binding AddCommand}" Margin="4"/>
-                    <Button Content="Update" Command="{Binding UpdateCommand}" Margin="4"/>
-                    <Button Content="Delete" Command="{Binding DeleteCommand}" Margin="4"/>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="6">
-                    <Image Width="140" Height="140" Margin="4" Source="{Binding EmployeePhoto}" />
-                    <StackPanel Orientation="Vertical" Margin="6">
-                        <Button Content="Upload Photo" Command="{Binding UploadPhotoCommand}" Margin="4"/>
-                        <TextBlock Text="Selected photo will be uploaded and displayed here." TextWrapping="Wrap" Width="300" />
-                    </StackPanel>
-                </StackPanel>
-            </Grid>
-        </DataTemplate>
-
-        <DataTemplate DataType="{x:Type vm:DepartmentsTabViewModel}">
-            <Grid Margin="6">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
-                <DataGrid ItemsSource="{Binding Departments}" SelectedItem="{Binding Department}"
-                          AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="0">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding DepartmentId}" Width="60"/>
-                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-
-                <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="4">
-                    <TextBox Width="250" Text="{Binding NewDepartmentName, UpdateSourceTrigger=PropertyChanged}" Margin="4"/>
-                    <Button Content="Add" Command="{Binding AddCommand}" Margin="4"/>
-                    <Button Content="Update" Command="{Binding UpdateCommand}" Margin="4"/>
-                    <Button Content="Delete" Command="{Binding DeleteCommand}" Margin="4"/>
-                </StackPanel>
-            </Grid>
-        </DataTemplate>
-
-        <DataTemplate DataType="{x:Type vm:ProjectsTabViewModel}">
-            <Grid Margin="6">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
-                <DataGrid ItemsSource="{Binding Projects}" SelectedItem="{Binding Project}"
-                          AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="0">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding ProjectId}" Width="60"/>
-                        <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*"/>
-                        <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="2*"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-
-                <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="4">
-                    <TextBox Width="200" Text="{Binding NewProjectTitle, UpdateSourceTrigger=PropertyChanged}" Margin="4"/>
-                    <TextBox Width="300" Text="{Binding NewProjectDescription, UpdateSourceTrigger=PropertyChanged}" Margin="4"/>
-                    <Button Content="Add" Command="{Binding AddCommand}" Margin="4"/>
-                    <Button Content="Update" Command="{Binding UpdateCommand}" Margin="4"/>
-                    <Button Content="Delete" Command="{Binding DeleteCommand}" Margin="4"/>
-                </StackPanel>
-            </Grid>
-        </DataTemplate>
-    </Window.Resources>
-
-    <Grid Margin="8">
-        <TabControl Grid.Column="1"
-                    ItemsSource="{Binding OpenTabs}"
-                    SelectedItem="{Binding SelectedTab}"
-                    ItemTemplate="{StaticResource TabHeaderTemplate}">
-        </TabControl>
+            <Border Grid.Row="1"
+        Margin="0,8,0,0"
+        BorderBrush="#B0B0B0"
+        BorderThickness="1"
+        CornerRadius="4"
+        Padding="8"
+        Background="White">
+                <ContentPresenter Grid.Row="1" Content="{Binding SelectedTab}" />
+            </Border>
+        </Grid>
     </Grid>
 </Window>

@@ -1,4 +1,5 @@
 ﻿using EmployeeWpfClient.EmployeeServiceRef;
+using EmployeeWpfClient.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -34,7 +35,7 @@ namespace EmployeeWpfClient.ViewModels
         public ProjectsTabViewModel()
         {
             Header = "Projects";
-            AddCommand = new RelayCommand(_ => Add(), _ => !string.IsNullOrWhiteSpace(NewProjectTitle));
+            AddCommand = new RelayCommand(_ => Add(), _ => true);
             UpdateCommand = new RelayCommand(_ => Update(), _ => Project != null);
             DeleteCommand = new RelayCommand(_ => Delete(), _ => Project != null);
         }
@@ -57,14 +58,26 @@ namespace EmployeeWpfClient.ViewModels
         {
             try
             {
-                using (var client = new EmployeeServiceClient())
+                var vm = new CreateProjectViewModel();
+                var win = new CreateProjectWindow
                 {
-                    var created = client.CreateProject(new ProjectDto { Title = NewProjectTitle, Description = NewProjectDescription });
-                    Projects.Add(created);
+                    DataContext = vm,
+                    Owner = Application.Current.MainWindow
+                };
+
+                if (win.ShowDialog() == true)
+                {
+                    using (var client = new EmployeeServiceClient())
+                    {
+                        var created = client.CreateProject(new ProjectDto
+                        {
+                            Title = vm.Title,
+                            Description = vm.Description
+                        });
+
+                        Projects.Add(created);
+                    }
                 }
-                NewProjectTitle = NewProjectDescription = string.Empty;
-                NotifyPropertyChanged(nameof(NewProjectTitle));
-                NotifyPropertyChanged(nameof(NewProjectDescription));
             }
             catch (Exception ex) { MessageBox.Show("AddProject failed: " + ex.Message); }
         }
@@ -84,15 +97,26 @@ namespace EmployeeWpfClient.ViewModels
 
         private void Delete()
         {
+            if (Project == null) return;
+
+            var title = string.IsNullOrWhiteSpace(Project.Title) ? $"(Id: {Project.ProjectId})" : Project.Title;
+            var msg = $"Are you sure you want to delete project '{title}'?";
+            var answer = MessageBox.Show(msg, "Confirm delete", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (answer != MessageBoxResult.Yes) return;
+
             try
             {
                 using (var client = new EmployeeServiceClient())
                 {
                     var deleted = client.DeleteProject(Project.ProjectId);
                     if (deleted) Projects.Remove(Project);
+                    else MessageBox.Show("Delete failed.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            catch (Exception ex) { MessageBox.Show("DeleteProject failed: " + ex.Message); }
+            catch (Exception ex)
+            {
+                MessageBox.Show("DeleteProject failed: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

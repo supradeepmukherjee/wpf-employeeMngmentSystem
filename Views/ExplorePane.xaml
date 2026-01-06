@@ -1,0 +1,52 @@
+<UserControl x:Class="EmployeeWpfClient.Views.ExplorePane"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:EmployeeWpfClient.ViewModels">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Text="Explore"
+                       FontSize="22"
+                       FontWeight="Bold"
+                       Margin="0,0,0,12"/>
+
+            <WrapPanel Grid.Row="1"
+                       Orientation="Horizontal"
+                       ItemHeight="120"
+                       ItemWidth="160"
+                       Margin="0,0,0,18">
+
+                <Button Style="{StaticResource TileButtonStyle}"
+                        Command="{Binding OpenTileCommand}"
+                        CommandParameter="Employees">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Text="Employees" FontWeight="SemiBold" FontSize="14" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Style="{StaticResource TileButtonStyle}"
+                        Command="{Binding OpenTileCommand}"
+                        CommandParameter="Departments">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Text="Departments" FontWeight="SemiBold" FontSize="14" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Style="{StaticResource TileButtonStyle}"
+                        Command="{Binding OpenTileCommand}"
+                        CommandParameter="Projects">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Text="Projects" FontWeight="SemiBold" FontSize="14" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+
+            </WrapPanel>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

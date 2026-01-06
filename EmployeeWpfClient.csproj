@@ -62,9 +62,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Converters\StringNotEmptyConverter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\CreateProjectViewModel.cs" />
+    <Compile Include="ViewModels\CreateEmpViewModel.cs" />
+    <Compile Include="ViewModels\CreateDeptViewModel.cs" />
     <Compile Include="ViewModels\DepartmentsTabViewModel.cs" />
     <Compile Include="ViewModels\EmployeesTabViewModel.cs" />
     <Compile Include="ViewModels\ExploreTabViewModel.cs" />
@@ -76,6 +80,25 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\CreateProjectWindow.xaml.cs">
+      <DependentUpon>CreateProjectWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateEmpWindow.xaml.cs">
+      <DependentUpon>CreateEmpWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateDeptWindow.xaml.cs">
+      <DependentUpon>CreateDeptWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DepartmentsView.xaml.cs">
+      <DependentUpon>DepartmentsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EmployeesView.xaml.cs" />
+    <Compile Include="Views\ExplorePane.xaml.cs">
+      <DependentUpon>ExplorePane.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProjectsVIew.xaml.cs">
+      <DependentUpon>ProjectsView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +148,29 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Page Include="Views\CreateProjectWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CreateEmpWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CreateDeptWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DepartmentsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EmployeesView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ExplorePane.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProjectsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -1,4 +1,5 @@
 ﻿using EmployeeWpfClient.EmployeeServiceRef;
+using EmployeeWpfClient.Views;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -53,7 +54,7 @@ namespace EmployeeWpfClient.ViewModels
         public EmployeesTabViewModel()
         {
             Header = "Employees";
-            AddCommand = new RelayCommand(_ => AddEmployee(), _ => !string.IsNullOrWhiteSpace(NewFirstName) && !string.IsNullOrWhiteSpace(NewLastName));
+            AddCommand = new RelayCommand(_ => AddEmployee(), _ => true);
             UpdateCommand = new RelayCommand(_ => UpdateEmployee(), _ => Employee != null);
             DeleteCommand = new RelayCommand(_ => DeleteEmployee(), _ => Employee != null);
 
@@ -78,21 +79,27 @@ namespace EmployeeWpfClient.ViewModels
         {
             try
             {
-                var dto = new EmployeeDto
+                var vm = new CreateEmpViewModel();
+                var win = new CreateEmpWindow
                 {
-                    FirstName = NewFirstName,
-                    LastName = NewLastName,
-                    Email = NewEmail
+                    DataContext = vm,
+                    Owner = Application.Current.MainWindow
                 };
-                using (var client = new EmployeeServiceClient())
+
+                if (win.ShowDialog() == true)
                 {
-                    var created = client.CreateEmployee(dto);
-                    Employees.Add(created);
+                    using (var client = new EmployeeServiceClient())
+                    {
+                        var created = client.CreateEmployee(new EmployeeDto
+                        {
+                            FirstName = vm.FirstName,
+                            LastName = vm.LastName,
+                            Email = vm.Email
+                        });
+
+                        Employees.Add(created);
+                    }
                 }
-                NewFirstName = NewLastName = NewEmail = string.Empty;
-                NotifyPropertyChanged(nameof(NewFirstName));
-                NotifyPropertyChanged(nameof(NewLastName));
-                NotifyPropertyChanged(nameof(NewEmail));
             }
             catch (Exception ex) { MessageBox.Show("AddEmployee failed: " + ex.Message); }
         }
@@ -112,15 +119,29 @@ namespace EmployeeWpfClient.ViewModels
 
         private void DeleteEmployee()
         {
+            if (Employee == null) return;
+
+            var displayName = string.IsNullOrWhiteSpace($"{Employee.FirstName} {Employee.LastName}".Trim())
+                              ? $"(Id: {Employee.EmployeeId})"
+                              : $"{Employee.FirstName} {Employee.LastName}";
+
+            var msg = $"Are you sure you want to delete employee '{displayName}'?";
+            var answer = MessageBox.Show(msg, "Confirm delete", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (answer != MessageBoxResult.Yes) return;
+
             try
             {
                 using (var client = new EmployeeServiceClient())
                 {
                     var ok = client.DeleteEmployee(Employee.EmployeeId);
                     if (ok) Employees.Remove(Employee);
+                    else MessageBox.Show("Delete failed.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            catch (Exception ex) { MessageBox.Show("DeleteEmployee failed: " + ex.Message); }
+            catch (Exception ex)
+            {
+                MessageBox.Show("DeleteEmployee failed: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void UploadPhoto()
