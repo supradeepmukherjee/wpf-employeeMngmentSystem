@@ -16,6 +16,7 @@ namespace EmployeeWpfClient.ViewModels
 {
     public class EmployeesTabViewModel : TabViewModelBase
     {
+        private readonly EmployeeServiceClient _client;
         public ObservableCollection<EmployeeDto> Employees { get; } = new ObservableCollection<EmployeeDto>();
 
         private EmployeeDto _employee;
@@ -51,7 +52,7 @@ namespace EmployeeWpfClient.ViewModels
 
         public RelayCommand UploadPhotoCommand { get; }
 
-        public EmployeesTabViewModel()
+        public EmployeesTabViewModel(EmployeeServiceClient client)
         {
             Header = "Employees";
             AddCommand = new RelayCommand(_ => AddEmployee(), _ => true);
@@ -59,6 +60,7 @@ namespace EmployeeWpfClient.ViewModels
             DeleteCommand = new RelayCommand(_ => DeleteEmployee(), _ => Employee != null);
 
             UploadPhotoCommand = new RelayCommand(_ => UploadPhoto(), _ => Employee != null);
+            _client = client;
         }
 
         public override void Load()

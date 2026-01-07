@@ -12,6 +12,8 @@ namespace EmployeeWpfClient.ViewModels
 {
     public class DepartmentsTabViewModel : TabViewModelBase
     {
+        private readonly EmployeeServiceClient _client;
+
         public ObservableCollection<DepartmentDto> Departments { get; } = new ObservableCollection<DepartmentDto>();
         private DepartmentDto _department;
         public DepartmentDto Department
@@ -31,12 +33,13 @@ namespace EmployeeWpfClient.ViewModels
         public RelayCommand UpdateCommand { get; }
         public RelayCommand DeleteCommand { get; }
 
-        public DepartmentsTabViewModel()
+        public DepartmentsTabViewModel(EmployeeServiceClient client)
         {
             Header = "Departments";
             AddCommand = new RelayCommand(_ => Add(), _ => true);
             UpdateCommand = new RelayCommand(_ => Update(), _ => Department != null);
             DeleteCommand = new RelayCommand(_ => Delete(), _ => Department != null);
+            _client = client;
         }
 
         public override void Load()
@@ -44,11 +47,8 @@ namespace EmployeeWpfClient.ViewModels
             Departments.Clear();
             try
             {
-                using (var client = new EmployeeServiceClient())
-                {
-                    var list = client.GetAllDepartments();
+                    var list = _client.GetAllDepartments();
                     foreach (var d in list) Departments.Add(d);
-                }
             }
             catch (Exception ex) { MessageBox.Show("LoadDepartments failed: " + ex.Message); }
         }
@@ -66,14 +66,12 @@ namespace EmployeeWpfClient.ViewModels
 
                 if (win.ShowDialog() == true)
                 {
-                        using (var client = new EmployeeServiceClient())
-                        {
-                            var created = client.CreateDepartment(
+                            var created = _client.CreateDepartment(
                                 new DepartmentDto { Name = vm.DepartmentName });
 
                             Departments.Add(created);
                             win.Close();
-                        }
+                        
                 }
             }
             catch (Exception ex) { MessageBox.Show("AddDepartment failed: " + ex.Message); }
@@ -83,11 +81,8 @@ namespace EmployeeWpfClient.ViewModels
         {
             try
             {
-                using (var client = new EmployeeServiceClient())
-                {
-                    var updated = client.UpdateDepartment(Department);
+                    var updated = _client.UpdateDepartment(Department);
                     Load();
-                }
             }
             catch (Exception ex) { MessageBox.Show("UpdateDepartment failed: " + ex.Message); }
         }
@@ -102,12 +97,10 @@ namespace EmployeeWpfClient.ViewModels
 
             try
             {
-                using (var client = new EmployeeServiceClient())
-                {
-                    var deleted = client.DeleteDepartment(Department.DepartmentId);
+                    var deleted = _client.DeleteDepartment(Department.DepartmentId);
                     if (deleted) Departments.Remove(Department);
                     else MessageBox.Show("Delete failed.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                
             }
             catch (Exception ex)
             {

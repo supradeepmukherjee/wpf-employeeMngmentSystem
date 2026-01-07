@@ -9,8 +9,10 @@ using System.Windows;
 
 namespace EmployeeWpfClient.ViewModels
 {
-    public class MainViewModel:ViewModelBase
+    public class MainViewModel:ViewModelBase,IDisposable
     {
+        private readonly EmployeeServiceClient _client;
+
         public ObservableCollection<TabViewModelBase> OpenTabs { get; } = new ObservableCollection<TabViewModelBase>();
 
         private TabViewModelBase _selectedTab;
@@ -25,6 +27,8 @@ namespace EmployeeWpfClient.ViewModels
 
         public MainViewModel()
         {
+            _client = new EmployeeServiceClient();
+
             CloseTabCommand = new RelayCommand(param => CloseTab(param as TabViewModelBase), param => CanCloseTab(param as TabViewModelBase));
             var explore = new ExploreTabViewModel(OnTileRequested);
             OpenTabs.Add(explore);
@@ -42,7 +46,7 @@ namespace EmployeeWpfClient.ViewModels
                 tab = OpenTabs.OfType<EmployeesTabViewModel>().FirstOrDefault();
                 if (tab == null)
                 {
-                    var t = new EmployeesTabViewModel();
+                    var t = new EmployeesTabViewModel(_client);
                     OpenTabs.Add(t);
                     t.Load();
                     tab = t;
@@ -53,7 +57,7 @@ namespace EmployeeWpfClient.ViewModels
                 tab = OpenTabs.OfType<DepartmentsTabViewModel>().FirstOrDefault();
                 if (tab == null)
                 {
-                    var t = new DepartmentsTabViewModel();
+                    var t = new DepartmentsTabViewModel(_client);
                     OpenTabs.Add(t);
                     t.Load();
                     tab = t;
@@ -64,7 +68,7 @@ namespace EmployeeWpfClient.ViewModels
                 tab = OpenTabs.OfType<ProjectsTabViewModel>().FirstOrDefault();
                 if (tab == null)
                 {
-                    var t = new ProjectsTabViewModel();
+                    var t = new ProjectsTabViewModel(_client);
                     OpenTabs.Add(t);
                     t.Load();
                     tab = t;
@@ -95,6 +99,11 @@ namespace EmployeeWpfClient.ViewModels
 
             int newIndex = Math.Min(index, OpenTabs.Count - 1);
             SelectedTab = OpenTabs[newIndex];
+        }
+
+        public void Dispose()
+        {
+            _client.Dispose();
         }
     }
 }

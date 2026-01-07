@@ -12,6 +12,7 @@ namespace EmployeeWpfClient.ViewModels
 {
     public class ProjectsTabViewModel : TabViewModelBase
     {
+        private readonly EmployeeServiceClient _client;
         public ObservableCollection<ProjectDto> Projects { get; } = new ObservableCollection<ProjectDto>();
         private ProjectDto _project;
         public ProjectDto Project
@@ -32,12 +33,13 @@ namespace EmployeeWpfClient.ViewModels
         public RelayCommand UpdateCommand { get; }
         public RelayCommand DeleteCommand { get; }
 
-        public ProjectsTabViewModel()
+        public ProjectsTabViewModel(EmployeeServiceClient client)
         {
             Header = "Projects";
             AddCommand = new RelayCommand(_ => Add(), _ => true);
             UpdateCommand = new RelayCommand(_ => Update(), _ => Project != null);
             DeleteCommand = new RelayCommand(_ => Delete(), _ => Project != null);
+            _client = client;
         }
 
         public override void Load()
@@ -45,11 +47,9 @@ namespace EmployeeWpfClient.ViewModels
             Projects.Clear();
             try
             {
-                using (var client = new EmployeeServiceClient())
-                {
-                    var list = client.GetAllProjects();
-                    foreach (var p in list) Projects.Add(p);
-                }
+                var list = _client.GetAllProjects();
+                foreach (var p in list) Projects.Add(p);
+
             }
             catch (Exception ex) { MessageBox.Show("LoadProjects failed: " + ex.Message); }
         }
@@ -67,16 +67,14 @@ namespace EmployeeWpfClient.ViewModels
 
                 if (win.ShowDialog() == true)
                 {
-                    using (var client = new EmployeeServiceClient())
+                    var created = _client.CreateProject(new ProjectDto
                     {
-                        var created = client.CreateProject(new ProjectDto
-                        {
-                            Title = vm.Title,
-                            Description = vm.Description
-                        });
+                        Title = vm.Title,
+                        Description = vm.Description
+                    });
 
-                        Projects.Add(created);
-                    }
+                    Projects.Add(created);
+
                 }
             }
             catch (Exception ex) { MessageBox.Show("AddProject failed: " + ex.Message); }
@@ -86,11 +84,9 @@ namespace EmployeeWpfClient.ViewModels
         {
             try
             {
-                using (var client = new EmployeeServiceClient())
-                {
-                    var updated = client.UpdateProject(Project);
-                    Load();
-                }
+                var updated = _client.UpdateProject(Project);
+                Load();
+
             }
             catch (Exception ex) { MessageBox.Show("UpdateProject failed: " + ex.Message); }
         }
@@ -106,12 +102,10 @@ namespace EmployeeWpfClient.ViewModels
 
             try
             {
-                using (var client = new EmployeeServiceClient())
-                {
-                    var deleted = client.DeleteProject(Project.ProjectId);
-                    if (deleted) Projects.Remove(Project);
-                    else MessageBox.Show("Delete failed.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                var deleted = _client.DeleteProject(Project.ProjectId);
+                if (deleted) Projects.Remove(Project);
+                else MessageBox.Show("Delete failed.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
             }
             catch (Exception ex)
             {
